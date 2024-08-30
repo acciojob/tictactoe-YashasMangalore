@@ -1,16 +1,17 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit');
     const formSection = document.getElementById('form-section');
     const gameSection = document.getElementById('game-section');
     const messageDiv = document.getElementById('message');
     
-    let currentPlayer = 'X';
+    let currentPlayer = 'x'; // 'X' starts first
     let player1Name = '';
     let player2Name = '';
     
     const cells = document.querySelectorAll('.cell');
+    
+    // Set initial content for cell1
+    // document.getElementById('1').textContent = 'X';
     
     const checkWin = () => {
         const winPatterns = [
@@ -33,19 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const handleClick = (e) => {
         const cell = e.target;
-        if (!cell.textContent) {
+        if (!cell.textContent) { // Ensure the cell is empty
             cell.textContent = currentPlayer;
             const winner = checkWin();
             if (winner) {
                 if (winner === 'draw') {
                     messageDiv.textContent = "It's a draw!";
                 } else {
-                    messageDiv.textContent = `${winner === 'X' ? player1Name : player2Name} congratulations you won!`;
+                    messageDiv.textContent = `${winner === 'x' ? player1Name : player2Name} congratulations you won!`;
                 }
-                cells.forEach(cell => cell.removeEventListener('click', handleClick));
+                cells.forEach(cell => cell.removeEventListener('click', handleClick)); // Stop further clicks
             } else {
-                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                messageDiv.textContent = `${currentPlayer === 'X' ? player1Name : player2Name}, you're up!`;
+                currentPlayer = currentPlayer === 'x' ? 'o' : 'x'; // Switch player
+                messageDiv.textContent = `${currentPlayer === 'x' ? player1Name : player2Name}, you're up!`;
             }
         }
     };
@@ -55,10 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         player2Name = document.getElementById('player2').value;
         
         if (player1Name && player2Name) {
-            formSection.style.display = 'none';
-            gameSection.style.display = 'block';
+            formSection.style.display = 'none'; // Hide the form
+            gameSection.style.display = 'block'; // Show the game
             messageDiv.textContent = `${player1Name}, you're up!`;
-            cells.forEach(cell => cell.addEventListener('click', handleClick));
+            cells.forEach(cell => cell.addEventListener('click', handleClick)); // Attach click handlers
         } else {
             alert('Please enter names for both players.');
         }
