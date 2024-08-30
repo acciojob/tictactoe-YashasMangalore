@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     submitButton.addEventListener('click', () => {
-        player1Name = document.getElementById('player-1').value;
-        player2Name = document.getElementById('player-2').value;
+        player1Name = document.getElementById('player1').value;
+        player2Name = document.getElementById('player2').value;
         
         if (player1Name && player2Name) {
             formSection.style.display = 'none';
