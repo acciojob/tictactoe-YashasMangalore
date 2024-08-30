@@ -1,9 +1,8 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit');
     const formSection = document.getElementById('form-section');
     const gameSection = document.getElementById('game-section');
-    const messageDiv = document.getElementById('message');
+    const messageDiv = document.querySelector('.message'); // Updated to match HTML class
     
     let currentPlayer = 'X';
     let player1Name = '';
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (winner === 'draw') {
                     messageDiv.textContent = "It's a draw!";
                 } else {
-                    messageDiv.textContent = `${winner === 'X' ? player1Name : player2Name}, congratulations you won!`;
+                    messageDiv.textContent = `${winner === 'X' ? player1Name : player2Name} congratulations you won!`;
                 }
                 cells.forEach(cell => cell.removeEventListener('click', handleClick));
             } else {
@@ -50,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     submitButton.addEventListener('click', () => {
-        player1Name = document.getElementById('player1').value;
-        player2Name = document.getElementById('player2').value;
+        player1Name = document.getElementById('player-1').value; // Corrected ID
+        player2Name = document.getElementById('player-2').value; // Corrected ID
         
         if (player1Name && player2Name) {
             formSection.style.display = 'none';
